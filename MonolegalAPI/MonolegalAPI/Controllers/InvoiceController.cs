@@ -36,19 +36,6 @@ namespace MonolegalAPI.Controllers
         {
             MongoClient dbClient = new MongoClient(_configuration.GetConnectionString("monolegalConn"));
 
-            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-            smtpClient.EnableSsl = true;
-            smtpClient.UseDefaultCredentials = false;
-            smtpClient.Host = "smtp.gmail.com";
-            smtpClient.Port = 587;
-            smtpClient.Credentials = new NetworkCredential("monolegal0@gmail.com", "desarrollo01.");
-
-
-            MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("monolegal0@gmail.com", "Recordatorio de pago factura");
-            mail.Subject = "Monolegal: Pago de factura";
-            mail.IsBodyHtml = true;
-
             var states = new Dictionary<string, string>();
             states.Add("primerrecordatorio", "segundorecordatorio");
             states.Add("segundorecordatorio", "desactivado");
@@ -61,6 +48,19 @@ namespace MonolegalAPI.Controllers
             {
                 foreach (var invoiceReminder in invoiceRemindersList)
                 {
+                    SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+                    smtpClient.EnableSsl = true;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Host = "smtp.gmail.com";
+                    smtpClient.Port = 587;
+                    smtpClient.Credentials = new NetworkCredential("monolegal0@gmail.com", "desarrollo01.");
+
+
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress("monolegal0@gmail.com", "Recordatorio de pago factura");
+                    mail.Subject = "Monolegal: Pago de factura";
+                    mail.IsBodyHtml = true;
+
                     var clientReminder = _commonClass.GetById(invoiceReminder.ClientId);
                     mail.To.Add(new MailAddress(clientReminder.Mail));
                     mail.Body =
@@ -79,8 +79,8 @@ namespace MonolegalAPI.Controllers
                     var reminderUpdate = Builders<Invoice>.Update.Set("State", states[invoiceReminder.State]);
                     var reminderUpdatefilter = Builders<Invoice>.Filter.Eq("ClientId", invoiceReminder.ClientId);
                     invoiceCollection.UpdateOne(reminderUpdatefilter, reminderUpdate);
+                    smtpClient.Dispose();
                 }
-                smtpClient.Dispose();
             }
 
             return new JsonResult("Mail sended and state updated successfully");
