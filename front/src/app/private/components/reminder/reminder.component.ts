@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {InvoiceService} from '../../../shared/services/invoice.service';
 
-let loading = false;
-
 @Component({
   selector: 'app-reminder',
   templateUrl: './reminder.component.html',
@@ -19,13 +17,10 @@ export class ReminderComponent implements OnInit {
   }
 
   sendReminder() {
-    loading = true;
     this.invoiceService.postReminders().subscribe(
       res => {
-        loading = false;
         this.reminderState = 'Se han enviado los correos de recordatorio correctamente y se han actualizado los estados en la base de datos exitosamente.'
       }, error => {
-        loading = false;
         this.reminderState = 'Se ha presentado un error, intente de nuevo más tarde.';
       }
     );
