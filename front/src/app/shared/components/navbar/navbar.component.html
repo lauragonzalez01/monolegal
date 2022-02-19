@@ -1,0 +1,10 @@
+<nav class="navbar navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <img class="monolegal-logo" src="https://www.monolegal.co/img/inicio/Logo_Monolegal_MINTIC.png" alt="Monolegal">
+    </a>
+    <div class="nav nav-fill nav-items">
+      <a *ngFor="let navItem of navItems" class="nav-link" [routerLink]="navItem.redirect">{{navItem.name}}</a>
+    </div>
+  </div>
+</nav>

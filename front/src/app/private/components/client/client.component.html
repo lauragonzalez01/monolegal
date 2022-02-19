@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Cliente</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Tipo de persona</th>
+    <th scope="col">Tipo de documento</th>
+    <th scope="col">Documento</th>
+    <th scope="col">Correo</th>
+    <th scope="col">Celular</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let client of clients">
+    <td>{{client.ClientId}}</td>
+    <td>{{client.BusinessName}}</td>
+    <td>{{client.PersonKind}}</td>
+    <td>{{client.DocumentType}}</td>
+    <td>{{client.Document}}</td>
+    <td>{{client.Mail}}</td>
+    <td>{{client.Cellphone}}</td>r
+  </tr>
+  </tbody>
+</table>

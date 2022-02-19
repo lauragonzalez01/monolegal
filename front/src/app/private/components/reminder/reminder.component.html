@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header">
+    Recordatorios
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">¿Desea enviar los recordatorios?</h5>
+    <p class="card-text">Se le enviara un correo a todos los clientes cuyas facturas se encuentren en estado
+      "primerrecordatorio" o "segundorecordatorio", notificandoles que avanzaran al siguiente estado, en el caso de
+      estar en "primerrecordatorio" pasara a "segundorecordatorio", y en caso de estar en "segundorecordatorio" pasara a
+      "desactivado", a su vez se actualizara dicho estado en la base de datos.</p>
+    <button type="button" data-toggle="modal" data-target="#infoModal" (click)="sendReminder()" class="btn btn-dark">
+      Enviar
+    </button>
+  </div>
+</div>
+
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Estado de recordatorios</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>{{reminderState}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

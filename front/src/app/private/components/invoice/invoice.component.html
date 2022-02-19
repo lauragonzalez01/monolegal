@@ -1,0 +1,32 @@
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th scope="col">Código</th>
+    <th scope="col">Cliente</th>
+    <th scope="col">Ciudad</th>
+    <th scope="col">Total</th>
+    <th scope="col">Subtotal</th>
+    <th scope="col">IVA</th>
+    <th scope="col">Retención</th>
+    <th scope="col">Fecha de creación</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Pagada</th>
+    <th scope="col">Fecha de pago</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let invoice of invoices">
+    <td>{{invoice.Code}}</td>
+    <td>{{invoice.ClientId}}</td>
+    <td>{{invoice.City}}</td>
+    <td>{{invoice.Total}}</td>
+    <td>{{invoice.SubTotal}}</td>
+    <td>{{invoice.VAT}}</td>
+    <td>{{invoice.Retention}}</td>
+    <td>{{invoice.CreationDate}}</td>
+    <td>{{invoice.State}}</td>
+    <td>{{invoice.Paid}}</td>
+    <td>{{invoice.PaidDate}}</td>
+  </tr>
+  </tbody>
+</table>
